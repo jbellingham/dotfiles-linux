@@ -63,6 +63,8 @@ in {
     (nixGLWrap wezterm)
   ];
 
+  xdg.configFile."wezterm/wezterm.lua".source = ./modules/wezterm/wezterm.lua;
+
   fonts.fontconfig.enable = true;
   
   # home.file.".config/wezterm/wezterm.lua".text = builtins.readFile ./wezterm.lua;
@@ -96,22 +98,6 @@ in {
     # '';
   };
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/jesse/etc/profile.d/hm-session-vars.sh
-  #
   home.sessionVariables = {
     # EDITOR = "emacs";
     NIXPKGS_ALLOW_UNFREE = 1;
@@ -125,6 +111,12 @@ in {
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
+
+    autojump = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     direnv = {
       enable = true;
       enableZshIntegration = true; # see note on other shells below
@@ -149,9 +141,9 @@ in {
       ];
     };
 
-    autojump = {
+    oh-my-posh = {
       enable = true;
-      enableZshIntegration = true;
+      useTheme = "1_shell";
     };
 
     vscode = {
@@ -171,11 +163,6 @@ in {
         "terminal.integrated.fontFamily" = "MesloLGS NF";
         "editor.fontFamily" = "'Monaspace Argon', monospace";
         };
-    };
-
-    oh-my-posh = {
-      enable = true;
-      useTheme = "1_shell";
     };
 
     zsh = {
