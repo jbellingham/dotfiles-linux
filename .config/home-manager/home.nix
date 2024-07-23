@@ -45,7 +45,6 @@ in {
     bat
     btop
     fzf
-    git
     git-extras
     jq
     meld
@@ -135,6 +134,19 @@ in {
     fzf = {
       enable = true;
       enableZshIntegration = true;
+    };
+
+    git = {
+      enable = true;
+      includes = [
+        { path = "~/.config/home-manager/modules/git/.gitconfig"; }
+      ];
+      ignores = [
+        "/*"
+        "!.config"
+        ".config/*"
+        "!.config/home-manager"
+      ];
     };
 
     autojump = {
