@@ -21,92 +21,91 @@ let
     done;
   '';
 in {
-  # ...
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-    # nixgl.auto.nixGLDefault
-    bat
-    btop
-    fzf
-    git-extras
-    jq
-    meld
-    oh-my-posh
-    tldr
-    wakatime
-
-    # fonts
-    fira-code
-    hack-font
-    meslo-lgs-nf
-    monaspace
-
-    nixgl.nixGLIntel
-    # (nixGLWrap spotify)
-    (nixGLWrap wezterm)
-  ];
-
   xdg.configFile."wezterm/wezterm.lua".source = ./modules/wezterm/wezterm.lua;
-
   fonts.fontconfig.enable = true;
+  home = {
+    packages = with pkgs; [
+      # # Adds the 'hello' command to your environment. It prints a friendly
+      # # "Hello, world!" when run.
+      # pkgs.hello
+
+      # # It is sometimes useful to fine-tune packages, for example, by applying
+      # # overrides. You can do that directly here, just don't forget the
+      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+      # # fonts?
+      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #   echo "Hello, ${config.home.username}!"
+      # '')
+      # nixgl.auto.nixGLDefault
+      
+      bat
+      btop
+      docker
+      fzf
+      git-extras
+      jq
+      meld
+      oh-my-posh
+      tldr
+
+      # fonts
+      fira-code
+      hack-font
+      meslo-lgs-nf
+      monaspace
+
+      nixgl.nixGLIntel
+      (nixGLWrap _1password-gui)
+      # (nixGLWrap spotify)
+      (nixGLWrap wezterm)
+    ];
   
-  # home.file.".config/wezterm/wezterm.lua".text = builtins.readFile ./wezterm.lua;
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "jesse";
-  home.homeDirectory = "/home/jesse";
+    # home.file.".config/wezterm/wezterm.lua".text = builtins.readFile ./wezterm.lua;
+    # Home Manager needs a bit of information about you and the paths it should
+    # manage.
+    username = "jesse";
+    homeDirectory = "/home/jesse";
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+    # This value determines the Home Manager release that your configuration is
+    # compatible with. This helps avoid breakage when a new Home Manager release
+    # introduces backwards incompatible changes.
+    #
+    # You should not change this value, even if you update Home Manager. If you do
+    # want to update the value, then make sure to first check the Home Manager
+    # release notes.
+    stateVersion = "24.05"; # Please read the comment before changing.
 
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+    # Home Manager is pretty good at managing dotfiles. The primary way to manage
+    # plain files is through 'home.file'.
+    file = {
+      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+      # # symlink to the Nix store copy.
+      # ".screenrc".source = dotfiles/screenrc;
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+      # # You can also set the file content immediately.
+      # ".gradle/gradle.properties".text = ''
+      #   org.gradle.console=verbose
+      #   org.gradle.daemon.idletimeout=3600000
+      # '';
+    };
+
+    sessionVariables = {
+      # EDITOR = "emacs";
+      NIXPKGS_ALLOW_UNFREE = 1;
+      SHELL = "zsh";
+    };
+
+    sessionPath = [
+      "$HOME/.local/bin"
+    ];
   };
-
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-    NIXPKGS_ALLOW_UNFREE = 1;
-    SHELL = "zsh";
-  };
-
-  home.sessionPath = [
-    "$HOME/.local/bin"
-  ];
 
   programs = {
     # Let Home Manager install and manage itself.
@@ -141,17 +140,25 @@ in {
       ];
     };
 
+    mcfly = {
+      enable = true;
+      fzf.enable = true;
+    };
+
     oh-my-posh = {
       enable = true;
       useTheme = "1_shell";
     };
 
+    vim.enable = true;
+
     vscode = {
       enable = true;
       package = pkgs.vscode;
       extensions = with pkgs.vscode-extensions; [
-            # bbenoist.Nix
-            # justusadam.language-haskell
+            bbenoist.nix
+            eamodio.gitlens
+            ms-vscode.makefile-tools
             wakatime.vscode-wakatime
         ];
       userSettings = {
