@@ -1,3 +1,9 @@
+# Some nix config inspiration...
+# https://github.com/gilescope/nix-all
+
+# Home manager options
+# https://nix-community.github.io/home-manager/options.xhtml
+
 { config, pkgs, lib, nixgl,  ... }:
 
 let
@@ -46,6 +52,7 @@ in {
       bat
       btop
       docker
+      firefox
       fzf
       git-extras
       jq
