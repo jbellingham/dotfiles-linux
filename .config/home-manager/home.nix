@@ -116,29 +116,14 @@ in {
       enableZshIntegration = true;
     };
 
-    direnv = {
-      enable = true;
-      enableZshIntegration = true; # see note on other shells below
-      nix-direnv.enable = true;
-    };
+    direnv = import ./modules/direnv;
 
     fzf = {
       enable = true;
       enableZshIntegration = true;
     };
 
-    git = {
-      enable = true;
-      includes = [
-        { path = "~/.config/home-manager/modules/git/.gitconfig"; }
-      ];
-      ignores = [
-        "/*"
-        "!.config"
-        ".config/*"
-        "!.config/home-manager"
-      ];
-    };
+    git = import ./modules/git;
 
     mcfly = {
       enable = true;
@@ -152,55 +137,7 @@ in {
 
     vim.enable = true;
 
-    vscode = {
-      enable = true;
-      package = pkgs.vscode;
-      extensions = with pkgs.vscode-extensions; [
-            bbenoist.nix
-            eamodio.gitlens
-            ms-vscode.makefile-tools
-            wakatime.vscode-wakatime
-        ];
-      userSettings = {
-        "editor.fontSize" = "16";
-        "editor.cursorStyle" = "line";
-        "terminal.integrated.fontSize" = "16";
-        "editor.renderWhitespace" = "all";
-        "debug.console.fontFamily" = "'Monaspace Argon', monospace";
-        "terminal.integrated.fontFamily" = "MesloLGS NF";
-        "editor.fontFamily" = "'Monaspace Argon', monospace";
-        };
-    };
-
-    zsh = {
-      # Ensure zsh is installed and enabled as the default shell
-      # command -v zsh | sudo tee -a /etc/shells
-      # chsh -s $(which zsh)
-      enable = true;
-      autosuggestion.enable = true;
-      syntaxHighlighting.enable = true;
-      autocd = true;
-
-      shellAliases = {
-        update = "(cd ~/.config/home-manager && make)";
-        ll = "ls -latr";
-
-        cat = "bat";
-        top = "btop";
-        grep = "grep -iF --color=auto";
-      };
-
-      plugins = [
-        {
-          name = "fzf-tab";
-          src = pkgs.fetchFromGitHub {
-            owner = "Aloxaf";
-            repo = "fzf-tab";
-            rev = "v1.1.2";
-            sha256 = "Qv8zAiMtrr67CbLRrFjGaPzFZcOiMVEFLg1Z+N6VMhg=";
-          };
-        }
-      ];
-    };
+    vscode = import ./modules/vscode { inherit pkgs; };
+    zsh = import ./modules/zsh { inherit pkgs; };
   };
 }
