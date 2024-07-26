@@ -5,6 +5,7 @@
         bbenoist.nix
         eamodio.gitlens
         ms-vscode.makefile-tools
+        shopify.ruby-lsp
         wakatime.vscode-wakatime
     ];
     userSettings = {

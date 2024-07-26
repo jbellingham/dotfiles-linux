@@ -39,13 +39,17 @@ in with pkgs; [
     
     bat
     btop
+    discord
     docker
     firefox
     fzf
     git-extras
+    inxi
     jq
     meld
+    obsidian
     oh-my-posh
+    slack
     tldr
 
     # fonts
@@ -56,6 +60,6 @@ in with pkgs; [
 
     nixgl.nixGLIntel
     (nixGLWrap _1password-gui)
-    # (nixGLWrap spotify)
+    (nixGLWrap spotify)
     (nixGLWrap wezterm)
 ]

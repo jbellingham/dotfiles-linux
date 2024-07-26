@@ -4,6 +4,11 @@
 # Home manager options
 # https://nix-community.github.io/home-manager/options.xhtml
 
+# Pop on Wayland
+# /etc/gdm3/custom.conf
+# Set WaylandEnable=true
+# Log out, and on login screen, cog -> Pop on Wayland
+
 { config, pkgs, lib, nixgl,  ... }: {
   xdg.configFile."wezterm/wezterm.lua".source = ./modules/wezterm/wezterm.lua;
   fonts.fontconfig.enable = true;
@@ -42,8 +47,8 @@
     };
 
     sessionVariables = {
-      # EDITOR = "emacs";
-      NIXPKGS_ALLOW_UNFREE = 1;
+      VISUAL = "code --wait";
+      EDITOR = "$VISUAL";
       SHELL = "zsh";
     };
 
