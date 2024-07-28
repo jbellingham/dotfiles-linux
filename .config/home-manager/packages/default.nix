@@ -39,18 +39,23 @@ in with pkgs; [
     
     bat
     btop
+    caffeine-ng
     discord
     docker
     firefox
     fzf
     git-extras
+    gnomeExtensions.vitals
     inxi
     jq
     meld
     obsidian
-    oh-my-posh
     slack
     tldr
+
+    # System backups
+    # https://github.com/linuxmint/timeshift
+    timeshift
 
     # fonts
     fira-code
