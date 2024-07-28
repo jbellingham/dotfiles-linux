@@ -10,7 +10,10 @@
 # Log out, and on login screen, cog -> Pop on Wayland
 
 { config, pkgs, lib, nixgl,  ... }: {
-  xdg.configFile."wezterm/wezterm.lua".source = ./modules/wezterm/wezterm.lua;
+  xdg = {
+    enable = true;
+    configFile."wezterm/wezterm.lua".source = ./modules/wezterm/wezterm.lua;
+  };
   fonts.fontconfig.enable = true;
   home = {
     packages = import ./packages { inherit pkgs nixgl; };

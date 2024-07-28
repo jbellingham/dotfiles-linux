@@ -1,0 +1,5 @@
+/*
+!.config
+.config/*
+!.config/home-manager
+!.config/nixpkgs
