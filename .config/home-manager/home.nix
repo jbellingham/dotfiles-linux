@@ -4,6 +4,11 @@
 # Home manager options
 # https://nix-community.github.io/home-manager/options.xhtml
 
+# https://github.com/mikeroyal/Pop_OS-Guide?tab=readme-ov-file
+
+# Gaming on Linux
+# https://usebottles.com/
+
 # Pop on Wayland
 # /etc/gdm3/custom.conf
 # Set WaylandEnable=true

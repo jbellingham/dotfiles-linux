@@ -11,6 +11,18 @@ nix-channel --add https://github.com/nix-community/nixGL/archive/main.tar.gz nix
 nix-channel --update
 nix run home-manager/master -- switch -b backup --flake .#"jesse"
 
+# install docker
+sudo curl -fsSL https://get.docker.com | sh
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+# Resolve (hopefully) the white flickering that keeps happening
+# https://www.kernel.org/doc/html/latest/gpu/amdgpu/module-parameters.html
+# https://support.system76.com/articles/kernelstub/
+# sudo kernelstub -a "amdgpu.sg_display=0" -v
+# cat /etc/kernelstub/configuration | grep "amdgpu.sg_display"
+
+
 command -v zsh | sudo tee -a /etc/shells
 
 # Requires logging out and back in
