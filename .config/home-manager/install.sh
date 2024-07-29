@@ -1,4 +1,5 @@
 #! /bin/bash
+set -euxo pipefail
 
 # Use Wayland in Pop OS
 # sudo sed -i '' 's/WaylandEnable=false/WaylandEnable=true/g' /etc/gdm3/custom.conf
