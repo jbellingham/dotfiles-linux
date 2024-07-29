@@ -37,21 +37,34 @@ in with pkgs; [
     # '')
     # nixgl.auto.nixGLDefault
     
+    # cli tools
     bat
     btop
     caffeine-ng
-    discord
-    docker
-    firefox
     fzf
-    git-extras
-    gnomeExtensions.vitals
-    inxi
+    neofetch
+    tldr
     jq
+
+    # dev-related
+    distrobox
+    lazydocker
+    git-extras
+    inxi
+    
+    # gnome-extensions
+    gnomeExtensions.vitals
+
+    discord
+    firefox
     meld
     obsidian
     slack
-    tldr
+
+    nixgl.nixGLIntel
+    (nixGLWrap _1password-gui)
+    (nixGLWrap spotify)
+    (nixGLWrap wezterm)
 
     # System backups
     # https://github.com/linuxmint/timeshift
@@ -63,8 +76,4 @@ in with pkgs; [
     meslo-lgs-nf
     monaspace
 
-    nixgl.nixGLIntel
-    (nixGLWrap _1password-gui)
-    (nixGLWrap spotify)
-    (nixGLWrap wezterm)
 ]
