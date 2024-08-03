@@ -37,24 +37,38 @@ in with pkgs; [
     # '')
     # nixgl.auto.nixGLDefault
     
+    glibc
+    adwaita-icon-theme
+    # glibc_multi
+    # libGl
+    gnome-tweaks
+    # toybox
+    wine
+    # winetricks
+    
     # cli tools
     bat
     btop
     caffeine-ng
     fzf
     neofetch
+    p7zip
     tldr
     jq
 
     # dev-related
     distrobox
+    docker-compose
     lazydocker
     git-extras
     inxi
+    nixd
     
     # gnome-extensions
-    gnomeExtensions.vitals
+    # gnomeExtensions.vitals
+    # gnomeExtensions.user-themes
 
+    # apps
     discord
     firefox
     meld
@@ -63,6 +77,7 @@ in with pkgs; [
 
     nixgl.nixGLIntel
     (nixGLWrap _1password-gui)
+    (nixGLWrap lutris)
     (nixGLWrap spotify)
     (nixGLWrap wezterm)
 
@@ -75,5 +90,4 @@ in with pkgs; [
     hack-font
     meslo-lgs-nf
     monaspace
-
 ]

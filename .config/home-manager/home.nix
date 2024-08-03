@@ -14,7 +14,7 @@
 # Set WaylandEnable=true
 # Log out, and on login screen, cog -> Pop on Wayland
 
-{ config, pkgs, lib, nixgl,  ... }: {
+{ config, pkgs, lib, nixgl, ... }: {
   xdg = {
     enable = true;
     configFile."wezterm/wezterm.lua".source = ./modules/wezterm/wezterm.lua;

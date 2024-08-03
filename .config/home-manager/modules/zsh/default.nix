@@ -8,12 +8,13 @@
     autocd = true;
 
     shellAliases = {
-    update = "(cd ~/.config/home-manager && make)";
-    ll = "ls -latr";
+        update = "(cd ~/.config/home-manager && make)";
+        ll = "ls -latr";
 
-    cat = "bat";
-    top = "btop";
-    grep = "grep -iF --color=auto";
+        cat = "bat";
+        top = "btop";
+        grep = "grep -iF --color=auto";
+        say = "spd-say";
     };
 
     plugins = [
