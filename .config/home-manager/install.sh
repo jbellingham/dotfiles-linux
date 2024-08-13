@@ -5,8 +5,11 @@ set -euxo pipefail
 # sudo sed -i '' 's/WaylandEnable=false/WaylandEnable=true/g' /etc/gdm3/custom.conf
 # This will log out
 # systemctl restart gdm.service
+if ! command -v nix &> /dev/null
+then
+    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
+fi
 
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
 . /nix/var/profiles/default/etc/profile.d/nix-daemon.sh
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --add https://github.com/nix-community/nixGL/archive/main.tar.gz nixgl && nix-channel --update
