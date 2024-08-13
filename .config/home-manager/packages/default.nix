@@ -76,6 +76,11 @@ in with pkgs; [
     slack
 
     nixgl.nixGLIntel
+    # For some reason on a fresh install these need un-nixGLWrapped stuffs
+    # wezterm
+    # _1password-gui
+    # lutris
+    # spotify
     (nixGLWrap _1password-gui)
     (nixGLWrap lutris)
     (nixGLWrap spotify)

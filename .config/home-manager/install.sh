@@ -1,6 +1,9 @@
 #! /bin/bash
 set -euxo pipefail
 
+sudo ln -s "$PWD"/.config/* ~/.config
+cd ~/.config/home-manager
+
 # Use Wayland in Pop OS (many graphical apps don't work in Wayland currently)
 # sudo sed -i '' 's/WaylandEnable=false/WaylandEnable=true/g' /etc/gdm3/custom.conf
 # This will log out
@@ -10,7 +13,7 @@ then
     curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
 fi
 
-. /nix/var/profiles/default/etc/profile.d/nix-daemon.sh
+. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --add https://github.com/nix-community/nixGL/archive/main.tar.gz nixgl && nix-channel --update
 nix-channel --update
