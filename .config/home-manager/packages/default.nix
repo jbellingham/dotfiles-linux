@@ -51,6 +51,7 @@ in with pkgs; [
     btop
     caffeine-ng
     fzf
+    gnumake
     neofetch
     p7zip
     tldr
@@ -78,13 +79,10 @@ in with pkgs; [
     nixgl.nixGLIntel
     # For some reason on a fresh install these need un-nixGLWrapped stuffs
     # wezterm
-    # _1password-gui
-    # lutris
-    # spotify
-    (nixGLWrap _1password-gui)
-    (nixGLWrap lutris)
-    (nixGLWrap spotify)
-    (nixGLWrap wezterm)
+    _1password-gui
+    lutris
+    spotify
+    # (nixGLWrap wezterm)
 
     # System backups
     # https://github.com/linuxmint/timeshift

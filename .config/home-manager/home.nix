@@ -15,6 +15,7 @@
 # Log out, and on login screen, cog -> Pop on Wayland
 
 { config, pkgs, lib, nixgl, ... }: {
+  imports = [./modules/zsh];
   xdg = {
     enable = true;
     configFile."wezterm/wezterm.lua".source = ./modules/wezterm/wezterm.lua;
@@ -96,6 +97,5 @@
     vim.enable = true;
 
     vscode = import ./modules/vscode { inherit pkgs; };
-    zsh = import ./modules/zsh { inherit pkgs; };
   };
 }
