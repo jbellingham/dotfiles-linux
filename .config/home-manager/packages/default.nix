@@ -56,6 +56,12 @@ in with pkgs; [
     p7zip
     tldr
     jq
+    xsel
+    speechd
+
+    gtk-engine-murrine
+    gruvbox-gtk-theme
+
 
     # dev-related
     distrobox
@@ -66,8 +72,7 @@ in with pkgs; [
     nixd
     
     # gnome-extensions
-    # gnomeExtensions.vitals
-    # gnomeExtensions.user-themes
+    gnome-extension-manager
 
     # apps
     discord

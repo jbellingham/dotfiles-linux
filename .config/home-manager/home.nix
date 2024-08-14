@@ -15,7 +15,7 @@
 # Log out, and on login screen, cog -> Pop on Wayland
 
 { config, pkgs, lib, nixgl, ... }: {
-  imports = [./modules/zsh];
+  imports = [ ./modules/zsh ./modules/gnome.nix ];
   xdg = {
     enable = true;
     configFile."wezterm/wezterm.lua".source = ./modules/wezterm/wezterm.lua;
