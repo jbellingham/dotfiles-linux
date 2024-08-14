@@ -1,10 +1,3 @@
-# { pkgs, ... }: {
-#    dconf.settings."org/gnome/shell".enabled-extensions = [
-#        pkgs.gnomeExtensions.vitals
-#        pkgs.gnomeExtensions.user-themes
-#    ];
-#}
-
 {
   pkgs,
   ...
@@ -20,7 +13,6 @@
     panel-corners
     rounded-window-corners
     vitals
-    material-shell
     just-perfection
     espresso
     user-themes
