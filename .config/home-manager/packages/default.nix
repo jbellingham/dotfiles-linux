@@ -59,6 +59,8 @@ in with pkgs; [
     xsel
     speechd
 
+    python3
+
     gtk-engine-murrine
     gruvbox-gtk-theme
 
@@ -87,7 +89,7 @@ in with pkgs; [
     _1password-gui
     lutris
     spotify
-    # (nixGLWrap wezterm)
+    (nixGLWrap wezterm)
 
     # System backups
     # https://github.com/linuxmint/timeshift

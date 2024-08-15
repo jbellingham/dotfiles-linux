@@ -15,7 +15,13 @@
 # Log out, and on login screen, cog -> Pop on Wayland
 
 { config, pkgs, lib, nixgl, ... }: {
-  imports = [ ./modules/zsh ./modules/gnome.nix ];
+  imports = [
+    ./modules/git
+    ./modules/gnome.nix
+    ./modules/vscode.nix
+    ./modules/terminal.nix
+  ];
+
   xdg = {
     enable = true;
     configFile."wezterm/wezterm.lua".source = ./modules/wezterm/wezterm.lua;
@@ -69,33 +75,5 @@
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
-
-    autojump = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-
-    direnv = import ./modules/direnv;
-
-    fzf = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-
-    git = import ./modules/git;
-
-    mcfly = {
-      enable = true;
-      fzf.enable = true;
-    };
-
-    oh-my-posh = {
-      enable = true;
-      useTheme = "1_shell";
-    };
-
-    vim.enable = true;
-
-    vscode = import ./modules/vscode { inherit pkgs; };
   };
 }

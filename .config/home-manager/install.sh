@@ -19,6 +19,13 @@ nix-channel --add https://github.com/nix-community/nixGL/archive/main.tar.gz nix
 nix-channel --update
 nix run home-manager/master -- switch -b backup --flake .#"jesse"
 
+# Change to suite your flavor / accent combination
+export FLAVOR="mocha"
+export ACCENT="mauve"
+curl -LsSO "https://raw.githubusercontent.com/catppuccin/gtk/v1.0.3/install.py"
+python3 install.py "${FLAVOR}" "${ACCENT}"
+# Set flatpak theme
+sudo flatpak override --env=GTK_THEME="catppuccin-${FLAVOR}-${ACCENT}-standard+default"
 # install docker
 sudo curl -fsSL https://get.docker.com | sh
 sudo groupadd docker || true # don't fail if the docker group already exists
