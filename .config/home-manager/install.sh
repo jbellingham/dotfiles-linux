@@ -1,7 +1,8 @@
 #! /bin/bash
 set -euxo pipefail
 
-sudo ln -s "$PWD"/.config/* ~/.config
+mkdir ~/.config/home-manager
+sudo ln -sf ~/dotfiles/.config/home-manager/* ~/.config/home-manager
 cd ~/.config/home-manager
 
 # Use Wayland in Pop OS (many graphical apps don't work in Wayland currently)
