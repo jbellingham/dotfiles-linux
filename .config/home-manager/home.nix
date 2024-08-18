@@ -29,7 +29,7 @@
   fonts.fontconfig.enable = true;
   home = {
     packages = import ./packages { inherit pkgs nixgl; };
-  
+    
     # home.file.".config/wezterm/wezterm.lua".text = builtins.readFile ./wezterm.lua;
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
@@ -59,6 +59,8 @@
       #   org.gradle.console=verbose
       #   org.gradle.daemon.idletimeout=3600000
       # '';
+      ".themes".source = "${pkgs.gruvbox-gtk-theme}/share/themes";
+      ".icons".source = "${pkgs.gruvbox-gtk-theme}/share/icons";
     };
 
     sessionVariables = {
@@ -76,4 +78,8 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
   };
+
+  gtk.enable = true;
+  gtk.theme = pkgs.gruvbox-gtk-theme;
+  gtk.iconTheme = pkgs.gruvbox-gtk-theme;
 }
